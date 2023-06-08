@@ -1,0 +1,172 @@
+﻿using AutoMapper;
+using CarWebAPI.Data.Repositores.BaseRepsitory;
+
+namespace CarWebAPI.Services.BaseService
+{
+    using AutoMapper;
+    using CarWebAPI.Modules;
+
+    public class BaseService<T, TResponse> : IBaseService<T, TResponse> where T : class
+    {
+        private readonly IRepository<T> _repository;
+        private readonly IMapper _mapper;
+
+        public BaseService(IRepository<T> repository, IMapper mapper)
+        {
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
+        }
+
+        public async Task<BaseResponse<TResponse>> GetByIdAsync(object id)
+        {
+            try
+            {
+                var entity = await _repository.GetByIdAsync(id);
+                if (entity == null)
+                {
+                    return new BaseResponse<TResponse>
+                    {
+                        Success = false,
+                        ErrorMessage = $"Entity with ID {id} not found."
+                    };
+                }
+
+                var response = MapEntityToResponse(entity);
+                return new BaseResponse<TResponse>
+                {
+                    Success = true,
+                    Value = response
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<TResponse>
+                {
+                    Success = false,
+                    ErrorMessage = ex.Message
+                };
+            }
+        }
+
+        public async Task<BaseResponse<IEnumerable<TResponse>>> GetAllAsync()
+        {
+            try
+            {
+                var entities = await _repository.GetAllAsync();
+                var response = MapEntitiesToResponse(entities);
+                return new BaseResponse<IEnumerable<TResponse>>
+                {
+                    Success = true,
+                    Value = response
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<IEnumerable<TResponse>>
+                {
+                    Success = false,
+                    ErrorMessage = ex.Message
+                };
+            }
+        }
+
+        public async Task<BaseResponse<TResponse>> CreateAsync(T entity)
+        {
+            try
+            {
+                await _repository.AddAsync(entity);
+                await _repository.SaveChangesAsync();
+                var response = MapEntityToResponse(entity);
+                return new BaseResponse<TResponse>
+                {
+                    Success = true,
+                    Value = response
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<TResponse>
+                {
+                    Success = false,
+                    ErrorMessage = ex.Message
+                };
+            }
+        }
+
+        public async Task<BaseResponse<TResponse>> UpdateAsync(object id, T entity)
+        {
+            try
+            {
+                var existingEntity = await _repository.GetByIdAsync(id);
+                if (existingEntity == null)
+                {
+                    return new BaseResponse<TResponse>
+                    {
+                        Success = false,
+                        ErrorMessage = $"Entity with ID {id} not found."
+                    };
+                }
+
+                _mapper.Map(entity, existingEntity);
+              await  _repository.UpdateAsync(existingEntity);
+                await _repository.SaveChangesAsync();
+                var response = MapEntityToResponse(existingEntity);
+                return new BaseResponse<TResponse>
+                {
+                    Success = true,
+                    Value = response
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<TResponse>
+                {
+                    Success = false,
+                    ErrorMessage = ex.Message
+                };
+            }
+        }
+
+        public async Task<BaseResponse<bool>> DeleteAsync(object id)
+        {
+            try
+            {
+                var entity = await _repository.GetByIdAsync(id);
+                if (entity == null)
+                {
+                    return new BaseResponse<bool>
+                    {
+                        Success = false,
+                        ErrorMessage = $"Entity with ID {id} not found."
+                    };
+                }
+
+              await  _repository.RemoveAsync(entity);
+                await _repository.SaveChangesAsync();
+                return new BaseResponse<bool>
+                {
+                    Success = true,
+                    Value = true
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<bool>
+                {
+                    Success = false,
+                    ErrorMessage = ex.Message
+                };
+            }
+        }
+
+        protected virtual TResponse MapEntityToResponse(T entity)
+        {
+            return _mapper.Map<T, TResponse>(entity);
+        }
+
+        protected virtual IEnumerable<TResponse> MapEntitiesToResponse(IEnumerable<T> entities)
+        {
+            return _mapper.Map<IEnumerable<T>, IEnumerable<TResponse>>(entities);
+        }
+    }
+}

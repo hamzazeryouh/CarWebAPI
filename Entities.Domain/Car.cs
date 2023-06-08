@@ -1,0 +1,36 @@
+﻿using CarWebAPI.Entities.Domain.Parametre;
+
+namespace CarWebAPI.Entities.Domain
+{
+    public class Car:IEntity<string>
+    {
+
+        public Car()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+        public Brand? Brand { get; set; }
+        public string? BrandId { get; set; }
+        public Model? Model { get; set; }
+        public  string? ModelId { get; set; }
+        public int? Year { get; set; }
+        public string? Color { get; set; }
+        public BodyType? BodyType { get; set; }
+        public string? BodyTypeId { get; set; }
+        public Transmission? Transmission { get; set; }
+        public string? TransmissionId { get; set; }
+        public string? FuelTypeId { get; set; }
+
+        public FuelType? FuelType { get; set; }
+        public int? SeatingCapacity { get; set; }
+        public int? LuggageCapacity { get; set; }
+        public ICollection<Feature>? Features { get; set; }
+        public decimal Price { get; set; }
+        public bool IsAvailable { get; set; }
+        public decimal Discount { get; set; }
+        public string? Description { get; set; }
+        public string? UserId { get; set; }
+        public User? Agence { get; set; }
+        public ICollection<Images>? Images { get; set; }
+    }
+}
