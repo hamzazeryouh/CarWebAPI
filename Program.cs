@@ -1,9 +1,12 @@
 
 using CarWebAPI.Data;
+using CarWebAPI.Data.Repositores.BaseRepsitory;
+using CarWebAPI.Data.Repositores.CarRepository;
 using CarWebAPI.Modules;
+using CarWebAPI.Services.BaseService;
+using CarWebAPI.Services.CarService;
 using Microsoft.EntityFrameworkCore;
-
-
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +21,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
+
+builder.Services.AddScoped<ICarRepository, CarRepository>();
+builder.Services.AddScoped<ICarService, CarService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
