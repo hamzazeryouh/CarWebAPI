@@ -8,6 +8,7 @@ using CarWebAPI.Modules;
 using CarWebAPI.Services;
 using CarWebAPI.Services.BaseService;
 using CarWebAPI.Services.CarService;
+using CarWebAPI.Services.FeatureService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
@@ -34,6 +35,9 @@ builder.Services.AddScoped<IBrandService, BrandService>();
 
 builder.Services.AddScoped<lModelRepository, ModelRepository>();
 builder.Services.AddScoped<IModelService, ModelService>();
+
+builder.Services.AddScoped<IFeatureRepository, FeatureRepository>();
+builder.Services.AddScoped<IFeatureService, FeatureService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
