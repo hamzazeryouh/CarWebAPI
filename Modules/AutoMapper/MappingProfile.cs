@@ -17,6 +17,9 @@ namespace CarWebAPI.Modules
 
             CreateMap<Model,ModelView>();
             CreateMap<ModelView, Model>();
+
+            CreateMap<Feature, FeatureModel>();
+            CreateMap<FeatureModel, Feature>();
             // Add more mappings as needed for other entity-response model pairs
         }
     }
