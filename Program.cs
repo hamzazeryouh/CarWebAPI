@@ -1,14 +1,16 @@
 
 using CarWebAPI.Data;
-using CarWebAPI.Data.Repositores;
 using CarWebAPI.Data.Repositores.BaseRepsitory;
-using CarWebAPI.Data.Repositores.BrandRepository;
 using CarWebAPI.Data.Repositores.CarRepository;
+using CarWebAPI.Data.Repositores.Parameter;
+using CarWebAPI.Data.Repositores.Parameter.BrandRepository;
+using CarWebAPI.Data.Repositores.Parameter.FeaureRepository;
 using CarWebAPI.Modules;
-using CarWebAPI.Services;
 using CarWebAPI.Services.BaseService;
 using CarWebAPI.Services.CarService;
-using CarWebAPI.Services.FeatureService;
+using CarWebAPI.Services.Parameter.BrandService;
+using CarWebAPI.Services.Parameter.FeatureService;
+using CarWebAPI.Services.Parameter.ModelService;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
