@@ -3,16 +3,20 @@ using CarWebAPI.Data;
 using CarWebAPI.Data.Repositores.BaseRepsitory;
 using CarWebAPI.Data.Repositores.CarRepository;
 using CarWebAPI.Data.Repositores.Parameter;
+using CarWebAPI.Data.Repositores.Parameter.BodyTypeRepository;
 using CarWebAPI.Data.Repositores.Parameter.BrandRepository;
 using CarWebAPI.Data.Repositores.Parameter.FeaureRepository;
 using CarWebAPI.Modules;
 using CarWebAPI.Services.BaseService;
 using CarWebAPI.Services.CarService;
+using CarWebAPI.Services.Parameter;
+using CarWebAPI.Services.Parameter.BodyTypeService;
 using CarWebAPI.Services.Parameter.BrandService;
 using CarWebAPI.Services.Parameter.FeatureService;
+using CarWebAPI.Services.Parameter.FuelTypeService;
 using CarWebAPI.Services.Parameter.ModelService;
+using CarWebAPI.Services.Parameter.TransmissionService;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,6 +44,25 @@ builder.Services.AddScoped<IModelService, ModelService>();
 
 builder.Services.AddScoped<IFeatureRepository, FeatureRepository>();
 builder.Services.AddScoped<IFeatureService, FeatureService>();
+
+builder.Services.AddScoped<ITransmissionRepository, TransmissionRepository>();
+builder.Services.AddScoped<ITransmissionService, TransmissionService>();
+
+builder.Services.AddScoped<lFuelTypeRepository, FuelTypeRepository>();
+builder.Services.AddScoped<IFuelTypeService, FuelTypeService>();
+
+builder.Services.AddScoped<IFeatureRepository, FeatureRepository>();
+builder.Services.AddScoped<IFeatureService, FeatureService>();
+builder.Services.AddScoped<IFeatureService, FeatureService>();
+
+builder.Services.AddScoped<IImageRepositroy, ImageRepository>();
+builder.Services.AddScoped<IImageService, ImageService>();
+
+builder.Services.AddScoped<IFeatureRepository, FeatureRepository>();
+builder.Services.AddScoped<IFeatureService, FeatureService>();
+
+builder.Services.AddScoped<IBodyTypeRepository, BodyTypeRepository>();
+builder.Services.AddScoped<IBodyTypeService, BodyTypeService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
