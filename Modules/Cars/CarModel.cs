@@ -16,6 +16,7 @@ namespace CarWebAPI.Modules
         public int? SeatingCapacity { get; set; }
         public int? LuggageCapacity { get; set; }
         public ICollection<Feature>? Features { get; set; }
+        public ICollection<Images>? Images { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
         public decimal Discount { get; set; }
