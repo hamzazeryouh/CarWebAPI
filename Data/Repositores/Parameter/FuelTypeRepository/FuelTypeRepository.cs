@@ -3,9 +3,9 @@ using CarWebAPI.Entities.Domain.Parametre;
 
 namespace CarWebAPI.Data.Repositores.Parameter
 {
-    public class ModelRepository : Repository<Model>, lModelRepository
+    public class FuelTypeRepository : Repository<FuelType>, lFuelTypeRepository
     {
-        public ModelRepository(DataContext context) : base(context)
+        public FuelTypeRepository(DataContext context) : base(context)
         {
         }
     }
