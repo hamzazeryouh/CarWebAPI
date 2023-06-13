@@ -4,6 +4,7 @@ using CarWebAPI.Data.Repositores.BaseRepsitory;
 namespace CarWebAPI.Services.BaseService
 {
     using AutoMapper;
+    using Azure;
     using CarWebAPI.Modules;
 
     public class BaseService<T, TResponse> : IBaseService<T, TResponse> where T : class
@@ -47,7 +48,16 @@ namespace CarWebAPI.Services.BaseService
                 };
             }
         }
-
+        public async Task<BaseResponse<IEnumerable<TResponse>>> GetPaginatedAndFilteredData(int pageNumber, int pageSize, Func<T, bool> filter)
+        {
+            IEnumerable<T> data = await _repository.GetPaginatedAndFilteredData(pageNumber, pageSize, filter);
+            var response = MapEntitiesToResponse(data);
+            return new BaseResponse<IEnumerable<TResponse>>
+            {
+                Success = true,
+                Value = response
+            };
+        }
         public async Task<BaseResponse<IEnumerable<TResponse>>> GetAllAsync()
         {
             try

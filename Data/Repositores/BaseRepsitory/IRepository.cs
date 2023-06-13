@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using CarWebAPI.Entities.Domain;
+using System.Linq.Expressions;
 
 namespace CarWebAPI.Data.Repositores.BaseRepsitory
 {
@@ -6,6 +7,7 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
     {
         Task<T> GetByIdAsync(object id);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetPaginatedAndFilteredData(int pageNumber, int pageSize, Func<T, bool> filter);
         Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate);
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> predicate);
         Task AddAsync(T entity);

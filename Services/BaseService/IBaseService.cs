@@ -9,5 +9,6 @@ namespace CarWebAPI.Services.BaseService
         Task<BaseResponse<TResponse>> CreateAsync(T entity);
         Task<BaseResponse<TResponse>> UpdateAsync(object id, T entity);
         Task<BaseResponse<bool>> DeleteAsync(object id);
+        Task<BaseResponse<IEnumerable<TResponse>>> GetPaginatedAndFilteredData(int pageNumber, int pageSize, Func<T, bool> filter);
     }
 }

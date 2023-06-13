@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CarWebAPI.Entities.Domain;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace CarWebAPI.Data.Repositores.BaseRepsitory
@@ -22,6 +23,24 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
+        }
+        public async Task<IEnumerable<T>> GetPaginatedAndFilteredData(int pageNumber, int pageSize, Func<T, bool> filter)
+        {
+            int itemsToSkip = (pageNumber - 1) * pageSize;
+
+            IQueryable<T> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter).AsQueryable();
+            }
+
+            IEnumerable<T> data = await query
+                .Skip(itemsToSkip)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return data;
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
