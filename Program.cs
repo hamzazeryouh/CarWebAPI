@@ -3,7 +3,6 @@ using CarWebAPI.Data;
 using CarWebAPI.Data.Repositores.BaseRepsitory;
 using CarWebAPI.Data.Repositores.CarRepository;
 using CarWebAPI.Data.Repositores.Parameter;
-using CarWebAPI.Data.Repositores.Parameter.BodyTypeRepository;
 using CarWebAPI.Data.Repositores.Parameter.BrandRepository;
 using CarWebAPI.Data.Repositores.Parameter.FeaureRepository;
 using CarWebAPI.Modules;
