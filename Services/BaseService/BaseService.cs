@@ -50,12 +50,14 @@ namespace CarWebAPI.Services.BaseService
         }
         public async Task<BaseResponse<IEnumerable<TResponse>>> GetPaginatedAndFilteredData(int pageNumber, int pageSize, Func<T, bool> filter)
         {
-            IEnumerable<T> data = await _repository.GetPaginatedAndFilteredData(pageNumber, pageSize, filter);
-            var response = MapEntitiesToResponse(data);
+            var data = await _repository.GetPaginatedAndFilteredData(pageNumber, pageSize, filter);
+            var response = MapEntitiesToResponse(data.Data);
+
             return new BaseResponse<IEnumerable<TResponse>>
             {
                 Success = true,
-                Value = response
+                Value = response,
+                TotalPages=data.TotalPages,
             };
         }
         public async Task<BaseResponse<IEnumerable<TResponse>>> GetAllAsync()

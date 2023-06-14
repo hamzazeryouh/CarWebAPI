@@ -29,6 +29,15 @@ public class BaseController<T, TResponse> : ControllerBase where T : class
         }
     }
 
+    [HttpGet("GetPaginate")]
+    public async Task<ActionResult<BaseResponse<IEnumerable<TResponse>>>> GetPaginatedAndFilteredData(int pageNumber, int pageSize)
+    {
+        // Assuming you have a data repository or service
+        var data =await _service.GetPaginatedAndFilteredData(pageNumber, pageSize, null);
+        return Ok(data);
+    }
+
+
     [HttpGet]
     public async Task<ActionResult<BaseResponse<IEnumerable<TResponse>>>> GetAll()
     {

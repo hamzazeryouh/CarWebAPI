@@ -4,6 +4,12 @@ using System.Linq.Expressions;
 
 namespace CarWebAPI.Data.Repositores.BaseRepsitory
 {
+
+    public class PaginatedData<T> where T : class
+    {
+        public IEnumerable<T> Data { get; set; }
+        public int TotalPages { get; set; }
+    }
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DataContext _context;
@@ -24,7 +30,7 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
         {
             return await _dbSet.ToListAsync();
         }
-        public async Task<IEnumerable<T>> GetPaginatedAndFilteredData(int pageNumber, int pageSize, Func<T, bool> filter)
+        public async Task<PaginatedData<T>> GetPaginatedAndFilteredData(int pageNumber, int pageSize, Func<T, bool> filter)
         {
             int itemsToSkip = (pageNumber - 1) * pageSize;
 
@@ -34,13 +40,18 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
             {
                 query = query.Where(filter).AsQueryable();
             }
+            int totalItems = await query.CountAsync();
 
             IEnumerable<T> data = await query
                 .Skip(itemsToSkip)
                 .Take(pageSize)
                 .ToListAsync();
-
-            return data;
+            int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            return new PaginatedData<T>
+            {
+                Data = data,
+                TotalPages = totalPages
+            };
         }
 
         public async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
@@ -86,4 +97,5 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
            await _context.SaveChangesAsync();
         }
     }
+
 }
