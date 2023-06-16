@@ -86,6 +86,7 @@ namespace CarWebAPI.Services.BaseService
         {
             try
             {
+                
                 await _repository.AddAsync(entity);
                 await _repository.SaveChangesAsync();
                 var response = MapEntityToResponse(entity);

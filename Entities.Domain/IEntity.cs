@@ -2,7 +2,7 @@
 {
     public class IEntity<Tkey>
     {
-        public Tkey Id { get; set; }
+        public Tkey Id { get; set; }  
         public DateTimeOffset CreatedOn { get; set; }
         public DateTimeOffset? LastModifiedOn { get; set; }
 

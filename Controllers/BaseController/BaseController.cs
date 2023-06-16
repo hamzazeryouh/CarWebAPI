@@ -16,7 +16,7 @@ public class BaseController<T, TResponse> : ControllerBase where T : class
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<BaseResponse<TResponse>>> GetById(object id)
+    public async Task<ActionResult<BaseResponse<TResponse>>> GetById(string id)
     {
         var result = await _service.GetByIdAsync(id);
         if (result.Success)
@@ -53,7 +53,7 @@ public class BaseController<T, TResponse> : ControllerBase where T : class
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<BaseResponse<TResponse>>> Update([FromRoute] object id, [FromBody] T entity)
+    public async Task<ActionResult<BaseResponse<TResponse>>> Update([FromRoute] string id, [FromBody] T entity)
     {
         var result = await _service.UpdateAsync(id, entity);
         if (result.Success)
@@ -67,7 +67,7 @@ public class BaseController<T, TResponse> : ControllerBase where T : class
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<BaseResponse<bool>>> Delete(object id)
+    public async Task<ActionResult<BaseResponse<bool>>> Delete(string id)
     {
         var result = await _service.DeleteAsync(id);
         if (result.Success)
