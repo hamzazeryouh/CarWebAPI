@@ -1,6 +1,6 @@
 ﻿namespace CarWebAPI.Entities.Domain.Parametre
 {
-    public class Feature : IEntity<string>
+    public class Feature : IEntity
     {
         public Feature()
         {

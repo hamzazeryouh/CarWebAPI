@@ -1,6 +1,6 @@
 ﻿namespace CarWebAPI.Entities.Domain.Parametre
 {
-    public class Brand:IEntity<string>
+    public class Brand:IEntity
     {
         public Brand()
     {

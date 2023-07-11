@@ -1,6 +1,6 @@
 ﻿namespace CarWebAPI.Entities.Domain.Parametre
 {
-    public class BodyType:IEntity<string>
+    public class BodyType:IEntity
     {
         public BodyType()
         {

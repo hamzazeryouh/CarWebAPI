@@ -18,7 +18,7 @@ namespace CarWebAPI.Services.BaseService
             _mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
-        public async Task<BaseResponse<TResponse>> GetByIdAsync(object id)
+        public async Task<BaseResponse<TResponse>> GetByIdAsync(string id)
         {
             try
             {
@@ -106,7 +106,7 @@ namespace CarWebAPI.Services.BaseService
             }
         }
 
-        public async Task<BaseResponse<TResponse>> UpdateAsync(object id, T entity)
+        public async Task<BaseResponse<TResponse>> UpdateAsync(string id, T entity)
         {
             try
             {
@@ -121,6 +121,7 @@ namespace CarWebAPI.Services.BaseService
                 }
 
                 _mapper.Map(entity, existingEntity);
+                MapEntity(entity, existingEntity);
               await  _repository.UpdateAsync(existingEntity);
                 await _repository.SaveChangesAsync();
                 var response = MapEntityToResponse(existingEntity);
@@ -140,7 +141,7 @@ namespace CarWebAPI.Services.BaseService
             }
         }
 
-        public async Task<BaseResponse<bool>> DeleteAsync(object id)
+        public async Task<BaseResponse<bool>> DeleteAsync(string id)
         {
             try
             {
@@ -180,6 +181,11 @@ namespace CarWebAPI.Services.BaseService
         protected virtual IEnumerable<TResponse> MapEntitiesToResponse(IEnumerable<T> entities)
         {
             return _mapper.Map<IEnumerable<T>, IEnumerable<TResponse>>(entities);
+        }
+
+        private void MapEntity(T source, T destination)
+        {
+            _mapper.Map(source, destination);
         }
     }
 }

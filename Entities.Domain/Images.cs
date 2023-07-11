@@ -2,7 +2,7 @@
 
 namespace CarWebAPI.Entities.Domain
 {
-    public class Images: IEntity<string>
+    public class Images: IEntity
     {
         public Images()
         {

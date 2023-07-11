@@ -2,7 +2,7 @@
 
 namespace CarWebAPI.Entities.Domain
 {
-    public class Car:IEntity<string>
+    public class Car:IEntity
     {
 
         public Car()
