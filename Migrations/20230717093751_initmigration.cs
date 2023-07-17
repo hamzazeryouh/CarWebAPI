@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CarWebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class initmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -55,7 +55,8 @@ namespace CarWebAPI.Migrations
                 name: "BodyType",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -70,7 +71,8 @@ namespace CarWebAPI.Migrations
                 name: "Brand",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -85,7 +87,8 @@ namespace CarWebAPI.Migrations
                 name: "FuelType",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -100,7 +103,8 @@ namespace CarWebAPI.Migrations
                 name: "Transmission",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
@@ -221,10 +225,11 @@ namespace CarWebAPI.Migrations
                 name: "Model",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BrandId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    BrandId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     LastModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -242,14 +247,20 @@ namespace CarWebAPI.Migrations
                 name: "Cars",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    BrandId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    ModelId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BrandId1 = table.Column<int>(type: "int", nullable: true),
+                    BrandId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ModelId1 = table.Column<int>(type: "int", nullable: true),
+                    ModelId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Year = table.Column<int>(type: "int", nullable: true),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BodyTypeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    TransmissionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    FuelTypeId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    BodyTypeId1 = table.Column<int>(type: "int", nullable: true),
+                    BodyTypeId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TransmissionId1 = table.Column<int>(type: "int", nullable: true),
+                    TransmissionId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FuelTypeId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FuelTypeId1 = table.Column<int>(type: "int", nullable: true),
                     SeatingCapacity = table.Column<int>(type: "int", nullable: true),
                     LuggageCapacity = table.Column<int>(type: "int", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
@@ -269,28 +280,28 @@ namespace CarWebAPI.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Cars_BodyType_BodyTypeId",
-                        column: x => x.BodyTypeId,
+                        name: "FK_Cars_BodyType_BodyTypeId1",
+                        column: x => x.BodyTypeId1,
                         principalTable: "BodyType",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Cars_Brand_BrandId",
-                        column: x => x.BrandId,
+                        name: "FK_Cars_Brand_BrandId1",
+                        column: x => x.BrandId1,
                         principalTable: "Brand",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Cars_FuelType_FuelTypeId",
-                        column: x => x.FuelTypeId,
+                        name: "FK_Cars_FuelType_FuelTypeId1",
+                        column: x => x.FuelTypeId1,
                         principalTable: "FuelType",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Cars_Model_ModelId",
-                        column: x => x.ModelId,
+                        name: "FK_Cars_Model_ModelId1",
+                        column: x => x.ModelId1,
                         principalTable: "Model",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Cars_Transmission_TransmissionId",
-                        column: x => x.TransmissionId,
+                        name: "FK_Cars_Transmission_TransmissionId1",
+                        column: x => x.TransmissionId1,
                         principalTable: "Transmission",
                         principalColumn: "Id");
                 });
@@ -299,11 +310,12 @@ namespace CarWebAPI.Migrations
                 name: "Feature",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     icon = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CarId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CarId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     LastModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -321,9 +333,10 @@ namespace CarWebAPI.Migrations
                 name: "Images",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CarId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    CarId = table.Column<int>(type: "int", nullable: true),
                     CreatedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     LastModifiedOn = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true)
                 },
@@ -377,29 +390,29 @@ namespace CarWebAPI.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_BodyTypeId",
+                name: "IX_Cars_BodyTypeId1",
                 table: "Cars",
-                column: "BodyTypeId");
+                column: "BodyTypeId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_BrandId",
+                name: "IX_Cars_BrandId1",
                 table: "Cars",
-                column: "BrandId");
+                column: "BrandId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_FuelTypeId",
+                name: "IX_Cars_FuelTypeId1",
                 table: "Cars",
-                column: "FuelTypeId");
+                column: "FuelTypeId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_ModelId",
+                name: "IX_Cars_ModelId1",
                 table: "Cars",
-                column: "ModelId");
+                column: "ModelId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cars_TransmissionId",
+                name: "IX_Cars_TransmissionId1",
                 table: "Cars",
-                column: "TransmissionId");
+                column: "TransmissionId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cars_UserId",

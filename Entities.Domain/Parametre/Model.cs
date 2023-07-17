@@ -3,7 +3,7 @@
     public class Model:IEntity
     {
         public Model() {
-            this.Id = Guid.NewGuid().ToString();
+            
         }
 
         public string Name { get; set; }

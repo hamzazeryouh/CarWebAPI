@@ -24,14 +24,23 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Car", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("BodyTypeId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BodyTypeId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("BrandId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("BrandId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
@@ -46,7 +55,10 @@ namespace CarWebAPI.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("FuelTypeId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("FuelTypeId1")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
@@ -58,7 +70,10 @@ namespace CarWebAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ModelId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ModelId1")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
@@ -67,7 +82,10 @@ namespace CarWebAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("TransmissionId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TransmissionId1")
+                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -77,15 +95,15 @@ namespace CarWebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BodyTypeId");
+                    b.HasIndex("BodyTypeId1");
 
-                    b.HasIndex("BrandId");
+                    b.HasIndex("BrandId1");
 
-                    b.HasIndex("FuelTypeId");
+                    b.HasIndex("FuelTypeId1");
 
-                    b.HasIndex("ModelId");
+                    b.HasIndex("ModelId1");
 
-                    b.HasIndex("TransmissionId");
+                    b.HasIndex("TransmissionId1");
 
                     b.HasIndex("UserId");
 
@@ -94,11 +112,14 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Images", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("CarId")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CarId")
+                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -119,8 +140,11 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Parametre.BodyType", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -143,8 +167,11 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Parametre.Brand", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -167,11 +194,14 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Parametre.Feature", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("CarId")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CarId")
+                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -200,8 +230,11 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Parametre.FuelType", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -224,11 +257,14 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Parametre.Model", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("BrandId")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BrandId")
+                        .HasColumnType("int");
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -253,8 +289,11 @@ namespace CarWebAPI.Migrations
 
             modelBuilder.Entity("CarWebAPI.Entities.Domain.Parametre.Transmission", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTimeOffset>("CreatedOn")
                         .HasColumnType("datetimeoffset");
@@ -480,23 +519,23 @@ namespace CarWebAPI.Migrations
                 {
                     b.HasOne("CarWebAPI.Entities.Domain.Parametre.BodyType", "BodyType")
                         .WithMany()
-                        .HasForeignKey("BodyTypeId");
+                        .HasForeignKey("BodyTypeId1");
 
                     b.HasOne("CarWebAPI.Entities.Domain.Parametre.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("BrandId");
+                        .HasForeignKey("BrandId1");
 
                     b.HasOne("CarWebAPI.Entities.Domain.Parametre.FuelType", "FuelType")
                         .WithMany()
-                        .HasForeignKey("FuelTypeId");
+                        .HasForeignKey("FuelTypeId1");
 
                     b.HasOne("CarWebAPI.Entities.Domain.Parametre.Model", "Model")
                         .WithMany()
-                        .HasForeignKey("ModelId");
+                        .HasForeignKey("ModelId1");
 
                     b.HasOne("CarWebAPI.Entities.Domain.Parametre.Transmission", "Transmission")
                         .WithMany()
-                        .HasForeignKey("TransmissionId");
+                        .HasForeignKey("TransmissionId1");
 
                     b.HasOne("CarWebAPI.Entities.Domain.User", "Agence")
                         .WithMany()

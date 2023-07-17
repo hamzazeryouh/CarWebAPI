@@ -6,7 +6,7 @@ namespace CarWebAPI.Entities.Domain
     {
         public Images()
         {
-            this.Id = Guid.NewGuid().ToString();
+            
         } 
       public  string Url { get; set; }
     }

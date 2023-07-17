@@ -178,6 +178,8 @@ namespace CarWebAPI.Services.BaseService
             return _mapper.Map<T, TResponse>(entity);
         }
 
+
+
         protected virtual IEnumerable<TResponse> MapEntitiesToResponse(IEnumerable<T> entities)
         {
             return _mapper.Map<IEnumerable<T>, IEnumerable<TResponse>>(entities);

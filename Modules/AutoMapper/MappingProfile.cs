@@ -14,13 +14,10 @@ namespace CarWebAPI.Modules
             CreateMap<User, UserModel>();
             CreateMap<Brand, BrandModel>();
             CreateMap<BrandModel, Brand>();
-
             CreateMap<Model,ModelView>();
             CreateMap<ModelView, Model>();
-
             CreateMap<Feature, FeatureModel>();
             CreateMap<FeatureModel, Feature>();
-
             CreateMap<Transmission, TransmissioModel>();
             CreateMap<TransmissioModel, Transmission>();
             // Add more mappings as needed for other entity-response model pairs

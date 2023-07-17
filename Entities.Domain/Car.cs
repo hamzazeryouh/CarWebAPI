@@ -7,7 +7,7 @@ namespace CarWebAPI.Entities.Domain
 
         public Car()
         {
-            this.Id = Guid.NewGuid().ToString();
+          
         }
         public Brand? Brand { get; set; }
         public string? BrandId { get; set; }
