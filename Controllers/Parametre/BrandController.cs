@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class BrandController : BaseController<Brand, BrandModel>
 {
-    public BrandController(IBaseService<Brand, BrandModel> service) : base(service)
+    public BrandController(IBaseService<Brand> service) : base(service)
     {
     }
 }

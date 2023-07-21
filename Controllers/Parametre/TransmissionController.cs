@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class TransmissionController : BaseController<Transmission, TransmissioModel>
 {
-    public TransmissionController(IBaseService<Transmission, TransmissioModel> service) : base(service)
+    public TransmissionController(IBaseService<Transmission> service) : base(service)
     {
     }
 }

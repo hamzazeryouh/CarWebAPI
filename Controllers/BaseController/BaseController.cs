@@ -8,15 +8,15 @@ using Microsoft.AspNetCore.Mvc;
 
 public class BaseController<T, TResponse> : ControllerBase where T : class
 {
-    private readonly IBaseService<T, TResponse> _service;
+    private readonly IBaseService<T> _service;
 
-    public BaseController(IBaseService<T, TResponse> service)
+    public BaseController(IBaseService<T> service)
     {
         _service = service ?? throw new ArgumentNullException(nameof(service));
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<BaseResponse<TResponse>>> GetById(string id)
+    public async Task<ActionResult<BaseResponse<TResponse>>> GetById(int id)
     {
         var result = await _service.GetByIdAsync(id);
         if (result.Success)
@@ -53,7 +53,7 @@ public class BaseController<T, TResponse> : ControllerBase where T : class
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult<BaseResponse<TResponse>>> Update([FromRoute] string id, [FromBody] T entity)
+    public async Task<ActionResult<BaseResponse<TResponse>>> Update([FromRoute] int id, [FromBody] T entity)
     {
         var result = await _service.UpdateAsync(id, entity);
         if (result.Success)
@@ -67,7 +67,7 @@ public class BaseController<T, TResponse> : ControllerBase where T : class
     }
 
     [HttpDelete("{id}")]
-    public async Task<ActionResult<BaseResponse<bool>>> Delete(string id)
+    public async Task<ActionResult<BaseResponse<bool>>> Delete(int id)
     {
         var result = await _service.DeleteAsync(id);
         if (result.Success)

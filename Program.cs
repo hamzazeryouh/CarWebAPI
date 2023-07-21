@@ -5,6 +5,7 @@ using CarWebAPI.Data.Repositores.CarRepository;
 using CarWebAPI.Data.Repositores.Parameter;
 using CarWebAPI.Data.Repositores.Parameter.BrandRepository;
 using CarWebAPI.Data.Repositores.Parameter.FeaureRepository;
+using CarWebAPI.Extensions.Error;
 using CarWebAPI.Modules;
 using CarWebAPI.Services.BaseService;
 using CarWebAPI.Services.CarService;
@@ -31,7 +32,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(MappingProfile).Assembly);
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-builder.Services.AddScoped(typeof(IBaseService<,>), typeof(BaseService<,>));
+builder.Services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
 
 builder.Services.AddScoped<ICarRepository, CarRepository>();
 builder.Services.AddScoped<ICarService, CarService>();
@@ -73,7 +74,7 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseDefaultFiles();
-
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseStaticFiles();
 
 app.UseRouting();

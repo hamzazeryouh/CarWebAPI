@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class BodyTypeController : BaseController<BodyType, BodyTypeModel>
 {
-    public BodyTypeController(IBaseService<BodyType, BodyTypeModel> service) : base(service)
+    public BodyTypeController(IBaseService<BodyType> service) : base(service)
     {
     }
 }

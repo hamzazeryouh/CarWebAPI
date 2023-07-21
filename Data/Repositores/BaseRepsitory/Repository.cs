@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace CarWebAPI.Data.Repositores.BaseRepsitory
 {
 
-    public class PaginatedData<T> where T : class
+    public class PaginatedData<T> where T : class 
     {
         public IEnumerable<T> Data { get; set; }
         public int TotalPages { get; set; }
@@ -21,11 +21,10 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<T> GetByIdAsync(object id)
+        public async Task<T> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
         }
-
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
@@ -76,7 +75,9 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
 
         public async Task UpdateAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+
+            _dbSet.Attach(entity);
+            _dbSet.Entry(entity).State = EntityState.Modified;
             await Task.CompletedTask;
         }
 

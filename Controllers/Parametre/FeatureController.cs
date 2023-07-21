@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class FeatureController : BaseController<Feature, FeatureModel>
 {
-    public FeatureController(IBaseService<Feature, FeatureModel> service) : base(service)
+    public FeatureController(IBaseService<Feature> service) : base(service)
     {
     }
 }

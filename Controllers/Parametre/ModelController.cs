@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class ModelController : BaseController<Model, ModelView>
 {
-    public ModelController(IBaseService<Model, ModelView> service) : base(service)
+    public ModelController(IBaseService<Model> service) : base(service)
     {
     }
 }

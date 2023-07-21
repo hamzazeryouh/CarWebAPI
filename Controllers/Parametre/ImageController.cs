@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class ImagesController : BaseController<Images, ImageModel>
 {
-    public ImagesController(IBaseService<Images, ImageModel> service) : base(service)
+    public ImagesController(IBaseService<Images> service) : base(service)
     {
     }
 }
