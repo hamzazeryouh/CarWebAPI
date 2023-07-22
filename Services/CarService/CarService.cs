@@ -6,7 +6,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.CarService
 {
-    public class CarService : BaseService<Car, CarModel>, ICarService
+    public class CarService : BaseService<Car>, ICarService
     {
         public CarService(IRepository<Car> repository, IMapper mapper) : base(repository, mapper)
         {

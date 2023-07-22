@@ -8,7 +8,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.ModelService
 {
-    public class ModelService : BaseService<Model, ModelView>, IModelService
+    public class ModelService : BaseService<Model>, IModelService
     {
         public ModelService(IRepository<Model> repository, IMapper mapper) : base(repository, mapper)
         {

@@ -4,7 +4,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.FeatureService
 {
-    public interface IFeatureService : IBaseService<Feature, FeatureModel>
+    public interface IFeatureService : IBaseService<Feature>
     {
     }
 }

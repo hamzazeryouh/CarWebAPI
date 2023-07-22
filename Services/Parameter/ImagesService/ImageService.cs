@@ -5,7 +5,7 @@ using CarWebAPI.Modules.Parametre;
 using CarWebAPI.Services.BaseService;
 namespace CarWebAPI.Services.Parameter
 {
-    public class ImageService : BaseService<Images, ImageModel>, IImageService
+    public class ImageService : BaseService<Images>, IImageService
     {
         public ImageService(IRepository<Images> repository, IMapper mapper) : base(repository, mapper)
         {

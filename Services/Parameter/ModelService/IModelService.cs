@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CarWebAPI.Services.Parameter.ModelService
 {
-    public interface IModelService : IBaseService<Entities.Domain.Parametre.Model, ModelView>
+    public interface IModelService : IBaseService<Entities.Domain.Parametre.Model>
     {
     }
 }

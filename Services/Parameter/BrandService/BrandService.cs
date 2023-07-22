@@ -7,7 +7,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.BrandService
 {
-    public class BrandService : BaseService<Brand, BrandModel>, IBrandService
+    public class BrandService : BaseService<Brand>, IBrandService
     {
         public BrandService(IRepository<Brand> repository, IMapper mapper) : base(repository, mapper)
         {

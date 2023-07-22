@@ -5,7 +5,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.BrandService
 {
-    public interface IBrandService : IBaseService<Brand, BrandModel>
+    public interface IBrandService : IBaseService<Brand>
     {
     }
 }

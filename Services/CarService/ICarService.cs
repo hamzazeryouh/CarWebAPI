@@ -4,7 +4,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.CarService
 {
-    public interface ICarService:IBaseService<Car,CarModel>
+    public interface ICarService:IBaseService<Car>
     {
     }
 }

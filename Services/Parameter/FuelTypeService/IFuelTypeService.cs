@@ -4,7 +4,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.FuelTypeService
 {
-    public interface IFuelTypeService:IBaseService<FuelType, FuelTypeModel>
+    public interface IFuelTypeService:IBaseService<FuelType>
     {
     }
 }

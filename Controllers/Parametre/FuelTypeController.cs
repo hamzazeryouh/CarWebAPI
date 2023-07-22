@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class FuelTypeController : BaseController<FuelType, FuelTypeModel>
 {
-    public FuelTypeController(IBaseService<FuelType, FuelTypeModel> service) : base(service)
+    public FuelTypeController(IBaseService<FuelType> service) : base(service)
     {
     }
 }

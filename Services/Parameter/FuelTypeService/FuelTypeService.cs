@@ -6,7 +6,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.FuelTypeService
 {
-    public class FuelTypeService : BaseService<FuelType, FuelTypeModel>, IFuelTypeService
+    public class FuelTypeService : BaseService<FuelType>, IFuelTypeService
     {
         public FuelTypeService(IRepository<FuelType> repository, IMapper mapper) : base(repository, mapper)
         {

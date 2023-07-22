@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 [ApiController]
 public class CarController : BaseController<Car, CarModel>
 {
-    public CarController(IBaseService<Car, CarModel> service) : base(service)
+    public CarController(IBaseService<Car> service) : base(service)
     {
     }
 }

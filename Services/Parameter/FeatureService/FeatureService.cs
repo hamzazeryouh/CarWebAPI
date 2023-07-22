@@ -6,7 +6,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.FeatureService
 {
-    public class FeatureService : BaseService<Feature, FeatureModel>, IFeatureService
+    public class FeatureService : BaseService<Feature>, IFeatureService
     {
         public FeatureService(IRepository<Feature> repository, IMapper mapper) : base(repository, mapper)
         {

@@ -6,7 +6,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.BodyTypeService
 {
-    public class BodyTypeService : BaseService<BodyType, BodyTypeModel>, IBodyTypeService
+    public class BodyTypeService : BaseService<BodyType>, IBodyTypeService
     {
         public BodyTypeService(IRepository<BodyType> repository, IMapper mapper) : base(repository, mapper)
         {

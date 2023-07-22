@@ -4,7 +4,7 @@ using CarWebAPI.Services.BaseService;
 
 namespace CarWebAPI.Services.Parameter.BodyTypeService
 {
-    public interface IBodyTypeService : IBaseService<BodyType, BodyTypeModel>
+    public interface IBodyTypeService : IBaseService<BodyType>
     {
     }
 }
