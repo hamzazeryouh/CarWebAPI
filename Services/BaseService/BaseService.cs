@@ -8,6 +8,7 @@ namespace CarWebAPI.Services.BaseService
     using CarWebAPI.Entities.Domain;
     using CarWebAPI.Entities.Domain.Parametre;
     using CarWebAPI.Modules;
+    using Microsoft.EntityFrameworkCore;
     using System.Security.Principal;
 
     public class BaseService<T> : IBaseService<T> where T : class
@@ -122,11 +123,19 @@ namespace CarWebAPI.Services.BaseService
                         ErrorMessage = $"Entity with ID {id} not found."
                     };
                 }
-                //var map = MapDTOToEntity (entity,existingEntity);
-                _mapper.Map(entity, existingEntity);
-                await _repository.UpdateAsync(entity);
+
+                // Instead of updating the existing entity, create a new one.
+                var newEntity = _mapper.Map<T, T>(entity);
+
+                // Add the new entity to the repository (you may need to create an AddAsync method).
+                await _repository.UpdateAsync(newEntity);
+
+                // Save changes to the repository.
                 await _repository.SaveChangesAsync();
-                var response = MapEntityToResponse(entity);
+
+                // Map the new entity to the response object.
+                var response = MapEntityToResponse(newEntity);
+
                 return new BaseResponse<T>
                 {
                     Success = true,
@@ -198,10 +207,6 @@ namespace CarWebAPI.Services.BaseService
             return _mapper.Map<T>(newT);
         }
 
-        public Task<BaseResponse<T>> UpdateAsync<T1>(int id, T1 entity)
-        {
-            throw new NotImplementedException();
-        }
 
         public T MapDTOToEntity(T newEntity, T OldEntity)
         {

@@ -23,7 +23,12 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
 
         public async Task<T> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+         var entity =   await _dbSet.FindAsync(id);
+            if (entity != null)
+            {
+                _dbSet.Entry(entity).State = EntityState.Detached;
+            }
+            return entity;
         }
         public async Task<IEnumerable<T>> GetAllAsync()
         {
@@ -76,8 +81,9 @@ namespace CarWebAPI.Data.Repositores.BaseRepsitory
         public async Task UpdateAsync(T entity)
         {
 
-            _dbSet.Attach(entity);
-            _dbSet.Entry(entity).State = EntityState.Modified;
+
+            //   _dbSet.Attach(entity);
+            _dbSet.Attach(entity).State = EntityState.Modified;
             await Task.CompletedTask;
         }
 
